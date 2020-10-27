@@ -16,14 +16,19 @@ class ReviewsController < ApplicationController
    end
 
    def create 
-      # take the info from the form and add it to the database
+      # take the info from the form and add it to the model
       @review = Review.new(form_params)
 
-      # save it to the database
-      @review.save
+      # we want to check if the model can be saved
+      # if it is, we're going to the homepage
+      # if it isn't, show the new form
+      if @review.save 
+         redirect_to root_path
+      else
+         # show the view for new.html.erb
+         render "new"
+      end
 
-      # redirect back to the homepage
-      redirect_to root_path
    end 
 
    def show 
@@ -55,10 +60,14 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
 
       # update with new info from the form
-      @review.update(form_params)
+      if @review.update(form_params)
 
-      # redirect
-      redirect_to review_path(@review)
+         # redirect
+         redirect_to review_path(@review)
+      else
+         render "edit"
+      end
+
    end
 
    def form_params
