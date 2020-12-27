@@ -40,6 +40,17 @@ gem 'active_link_to'
 
 gem 'profanity_filter'
 
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
+gem 'fog-aws'
+
+# add admin panel
+gem 'activeadmin'
+gem 'devise'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
